@@ -100,103 +100,25 @@ The system serves as both a learning platform and a protocol debugging tool.
 
 # System Architecture
 
-```text
-                     ┌─────────────────────────────┐
-                     │        ESP32-WROOM          │
-                     │                             │
-                     │  • Bit-Banged UART          │
-                     │  • Bit-Banged SPI           │
-                     │  • Bit-Banged I²C           │
-                     │  • MQTT Client              │
-                     │  • TFT Graphics             │
-                     └──────────────┬──────────────┘
-                                    │
-      ┌─────────────────────────────┼─────────────────────────────┐
-      │                             │                             │
-      ▼                             ▼                             ▼
-┌─────────────┐              ┌─────────────┐             ┌─────────────┐
-│  MAX485EPA  │              │ W25X10CLSNIG│             │ 24LC256-I/P │
-│   UART      │              │ SPI Flash   │             │   EEPROM    │
-└──────┬──────┘              └──────┬──────┘             └──────┬──────┘
-       │                            │                           │
-       └─────────────── ACK / NACK Responses ───────────────────┘
-                                    │
-                                    ▼
-                         ┌────────────────────┐
-                         │  ILI9341 TFT LCD   │
-                         │ Waveform Display   │
-                         └─────────┬──────────┘
-                                   │
-                                   ▼
-                           MQTT over Wi-Fi
-                                   │
-                                   ▼
-                         MQTT Broker (WebSockets)
-                                   │
-                                   ▼
-                         Browser Dashboard
-```
+<p align="center">
+  <img src="circuit/diagrams/system-architecture.png" width="90%">
+</p>
 
 ---
 
 # Communication Workflow
 
-```text
-Select Protocol
-      │
-      ▼
-ESP32 Generates Frames
-      │
-      ▼
-Peripheral Receives Frame
-      │
-      ▼
-ACK / NACK Generated
-      │
-      ▼
-Waveform Displayed on TFT LCD
-      │
-      ▼
-Frame Published via MQTT
-      │
-      ▼
-Browser Dashboard Updates
-      │
-      ▼
-Fault Simulation Applied
-```
+<p align="center">
+  <img src="circuit/diagrams/communication-workflow.jpeg" width="90%">
+</p>
 
 ---
 
 # Project Development Workflow
 
-```text
-Concept
-   │
-   ▼
-Wokwi Simulation
-   │
-   ▼
-Breadboard Prototype
-   │
-   ▼
-Custom PCB Design
-   │
-   ▼
-Firmware Development
-   │
-   ▼
-Protocol Validation
-   │
-   ▼
-MQTT Integration
-   │
-   ▼
-Web Dashboard
-   │
-   ▼
-Fault Simulation
-```
+<p align="center">
+  <img src="circuit/diagrams/development-workflow.jpeg" width="90%">
+</p>
 
 ---
 
@@ -278,7 +200,7 @@ I²C communication is implemented using the **24LC256-I/P EEPROM**. Frame genera
 
 Protocol data is transmitted wirelessly using MQTT over Wi-Fi, enabling real-time visualization on a browser-based dashboard.
 
-The ESP32 publishes protocol frames using MQTT, while the web application subscribes to these topics and displays the received communication.
+The ESP32 publishes protocol frames and protocol status over MQTT, allowing the browser dashboard to visualize communication in real time.
 
 ### MQTT Connection
 
@@ -286,9 +208,7 @@ The ESP32 publishes protocol frames using MQTT, while the web application subscr
 
 ---
 
-# Working Prototype
-
-## User Interface
+# Device User Interface
 
 | Home Screen | Protocol Selection |
 |-------------|--------------------|
@@ -298,78 +218,52 @@ The ESP32 publishes protocol frames using MQTT, while the web application subscr
 
 # Communication Fault Simulation
 
-To demonstrate protocol reliability and error handling, four communication scenarios were implemented.
+To demonstrate protocol reliability and error handling, four communication scenarios were implemented. The TFT LCD displays the transmitted waveform, while the browser dashboard visualizes the processed communication after applying the selected fault condition.
 
 - Correct Frame
 - Wrong Frame
 - Broken Frame
 - Noise Injection
 
-The TFT LCD displays the transmitted waveform while the browser dashboard visualizes the processed communication.
+---
+
+## Correct Frame
+
+| Protocol | Hardware (TFT LCD) | Web Dashboard |
+|----------|---------------------|---------------|
+| UART | ![](images/working-model/correct/uart-correct.jpeg) | ![](images/software/correct/uart-correct.png) |
+| SPI | ![](images/working-model/correct/spi-correct.jpeg) | ![](images/software/correct/spi-correct.png) |
+| I²C | ![](images/working-model/correct/i2c-correct.jpeg) | ![](images/software/correct/i2c-correct.png) |
 
 ---
 
-# Correct Frame
+## Wrong Frame
 
-| Hardware | Web Dashboard |
-|----------|---------------|
-| ![](images/working-model/correct/uart-correct.jpeg) | ![](images/software/correct/uart-correct.png) |
-
-| Hardware | Web Dashboard |
-|----------|---------------|
-| ![](images/working-model/correct/spi-correct.jpeg) | ![](images/software/correct/spi-correct.png) |
-
-| Hardware | Web Dashboard |
-|----------|---------------|
-| ![](images/working-model/correct/i2c-correct.jpeg) | ![](images/software/correct/i2c-correct.png) |
+| Protocol | Hardware (TFT LCD) | Web Dashboard |
+|----------|---------------------|---------------|
+| UART | ![](images/working-model/wrong/uart-wrong.jpeg) | ![](images/software/wrong/uart-wrong.png) |
+| SPI | ![](images/working-model/wrong/spi-wrong.jpeg) | ![](images/software/wrong/spi-wrong.png) |
+| I²C | ![](images/working-model/wrong/i2c-wrong.jpeg) | ![](images/software/wrong/i2c-wrong.png) |
 
 ---
 
-# Wrong Frame
+## Broken Frame
 
-| Hardware | Web Dashboard |
-|----------|---------------|
-| ![](images/working-model/wrong/uart-wrong.jpeg) | ![](images/software/wrong/uart-wrong.png) |
-
-| Hardware | Web Dashboard |
-|----------|---------------|
-| ![](images/working-model/wrong/spi-wrong.jpeg) | ![](images/software/wrong/spi-wrong.png) |
-
-| Hardware | Web Dashboard |
-|----------|---------------|
-| ![](images/working-model/wrong/i2c-wrong.jpeg) | ![](images/software/wrong/i2c-wrong.png) |
+| Protocol | Hardware (TFT LCD) | Web Dashboard |
+|----------|---------------------|---------------|
+| UART | ![](images/working-model/broken/uart-broken.jpeg) | ![](images/software/broken/uart-broken.png) |
+| SPI | ![](images/working-model/broken/spi-broken.jpeg) | ![](images/software/broken/spi-broken.png) |
+| I²C | ![](images/working-model/broken/i2c-broken.jpeg) | ![](images/software/broken/i2c-broken.png) |
 
 ---
 
-# Broken Frame
+## Noise Injection
 
-| Hardware | Web Dashboard |
-|----------|---------------|
-| ![](images/working-model/broken/uart-broken.jpeg) | ![](images/software/broken/uart-broken.png) |
-
-| Hardware | Web Dashboard |
-|----------|---------------|
-| ![](images/working-model/broken/spi-broken.jpeg) | ![](images/software/broken/spi-broken.png) |
-
-| Hardware | Web Dashboard |
-|----------|---------------|
-| ![](images/working-model/broken/i2c-broken.jpeg) | ![](images/software/broken/i2c-broken.png) |
-
----
-
-# Noise Injection
-
-| Hardware | Web Dashboard |
-|----------|---------------|
-| ![](images/working-model/noise/uart-noise.jpeg) | ![](images/software/noise/uart-noise.png) |
-
-| Hardware | Web Dashboard |
-|----------|---------------|
-| ![](images/working-model/noise/spi-noise.jpeg) | ![](images/software/noise/spi-noise.png) |
-
-| Hardware | Web Dashboard |
-|----------|---------------|
-| ![](images/working-model/noise/i2c-noise.jpeg) | ![](images/software/noise/i2c-noise.png) |
+| Protocol | Hardware (TFT LCD) | Web Dashboard |
+|----------|---------------------|---------------|
+| UART | ![](images/working-model/noise/uart-noise.jpeg) | ![](images/software/noise/uart-noise.png) |
+| SPI | ![](images/working-model/noise/spi-noise.jpeg) | ![](images/software/noise/spi-noise.png) |
+| I²C | ![](images/working-model/noise/i2c-noise.jpeg) | ![](images/software/noise/i2c-noise.png) |
 
 ---
 
@@ -425,13 +319,17 @@ A custom PCB was designed to integrate the ESP32, communication peripherals, TFT
 
 ## Block Diagram
 
-![](circuit/schematic/block-diagram.png)
+<p align="center">
+  <img src="circuit/diagrams/block-diagram.png" width="90%">
+</p>
 
 ---
 
 ## Circuit Schematic
 
-![](circuit/schematic/schematic.png)
+<p align="center">
+  <img src="circuit/schematic/schematic.png" width="95%">
+</p>
 
 ---
 
@@ -506,9 +404,20 @@ Through this project, I gained practical experience in:
 ESP32-Multi-Protocol-Analyzer/
 │
 ├── circuit/
+│   ├── diagrams/
+│   ├── pcb/
+│   └── schematic/
+│
 ├── code/
+│
 ├── docs/
+│
 └── images/
+    ├── simulation/
+    ├── breadboard-testing/
+    ├── serial-monitor/
+    ├── software/
+    └── working-model/
 ```
 
 ---
