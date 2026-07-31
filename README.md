@@ -13,7 +13,7 @@
 # Working Prototype
 
 <p align="center">
-<img src="images/working-model/user-interface/user-interface.jpeg" width="65%">
+<img src="images/working-model/user-interface/user-interface.jpeg" width="50%">
 </p>
 
 ---
@@ -109,7 +109,7 @@ The system serves as both a learning platform and a protocol debugging tool.
 # Communication Workflow
 
 <p align="center">
-  <img src="circuit/diagrams/communication-workflow.jpeg" width="60%">
+  <img src="circuit/diagrams/communication-workflow.jpeg" width="50%">
 </p>
 
 ---
@@ -117,7 +117,7 @@ The system serves as both a learning platform and a protocol debugging tool.
 # Project Development Workflow
 
 <p align="center">
-  <img src="circuit/diagrams/development-workflow.jpeg" width="9=60%">
+  <img src="circuit/diagrams/development-workflow.jpeg" width="50%">
 </p>
 
 ---
