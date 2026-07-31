@@ -174,7 +174,7 @@ The ESP32 communicates with a **MAX485EPA RS485 transceiver** by transmitting pr
 ### UART Simulation
 
 <p align="center">
-  <img src="images/simulation/uart-simulation.jpeg" width="50%">
+  <img src="images/simulation/uart-simulation.jpeg" width="30%">
 </p>
 
 ### UART Serial Monitor
@@ -190,7 +190,7 @@ SPI communication is demonstrated using the **W25X10CLSNIG SPI Flash Memory**. T
 ### SPI Simulation
 
 <p align="center">
-  <img src="images/simulation/spi-simulation.png" width="50%">
+  <img src="images/simulation/spi-simulation.png" width="60%">
 </p>
 
 ### SPI Serial Monitor
@@ -206,7 +206,7 @@ I²C communication is implemented using the **24LC256-I/P EEPROM**. Frame genera
 ### I²C Simulation
 
 <p align="center">
-  <img src="images/simulation/i2c-simulation.jpeg" width="50%">
+  <img src="images/simulation/i2c-simulation.jpeg" width="60%">
 </p>
 
 ### I²C Serial Monitor
@@ -224,7 +224,7 @@ The ESP32 publishes protocol frames and protocol status over MQTT, allowing the 
 ### MQTT Connection
 
 <p align="center">
-  <img src="images/serial-monitor/mqtt-connected.png" width="40%">
+  <img src="images/serial-monitor/mqtt-connected.png" width="25%">
 </p>
 
 ---
