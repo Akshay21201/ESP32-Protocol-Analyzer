@@ -174,7 +174,7 @@ The ESP32 communicates with a **MAX485EPA RS485 transceiver** by transmitting pr
 ### UART Simulation
 
 <p align="center">
-  <img src="images/simulation/uart-simulation.jpeg" width="30%">
+  <img src="images/simulation/uart-simulation.jpeg" width="40%">
 </p>
 
 ### UART Serial Monitor
