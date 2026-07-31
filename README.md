@@ -101,7 +101,7 @@ The system serves as both a learning platform and a protocol debugging tool.
 # System Architecture
 
 <p align="center">
-  <img src="circuit/diagrams/system-architecture.png" width="90%">
+  <img src="circuit/diagrams/system-architecture.jpeg" width="90%">
 </p>
 
 ---
