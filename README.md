@@ -18,6 +18,27 @@
 
 ---
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Motivation](#motivation)
+- [Key Features](#key-features)
+- [Technology Stack](#technology-stack)
+- [Hardware Components](#hardware-components)
+- [System Architecture](#system-architecture)
+- [Project Gallery](#project-gallery)
+- [Protocol Implementations](#protocol-implementations)
+- [MQTT Integration](#mqtt-integration)
+- [Communication Fault Simulation](#communication-fault-simulation)
+- [Educational Dashboard](#educational-dashboard)
+- [PCB Design](#pcb-design)
+- [Circuit Design](#circuit-design)
+- [Project Documentation](#project-documentation)
+- [Future Improvements](#future-improvements)
+- [Learning Outcomes](#learning-outcomes)
+
+---
+
 # Overview
 
 The **ESP32 Multi-Protocol Analyzer & Fault Simulator** is an embedded systems project designed to demonstrate and visualize three widely used communication protocols:
@@ -140,14 +161,6 @@ The system serves as both a learning platform and a protocol debugging tool.
 
 ---
 
-## Custom PCB
-
-| PCB Layout | 3D View |
-|-----------|----------|
-| ![](circuit/pcb/pcb-layout.png) | ![](circuit/pcb/pcb-3d.png) |
-
----
-
 # Protocol Implementations
 
 The ESP32 implements all three communication protocols using **software-driven (bit-banged) communication**, providing complete control over frame generation, timing, and fault injection.
@@ -160,7 +173,9 @@ The ESP32 communicates with a **MAX485EPA RS485 transceiver** by transmitting pr
 
 ### UART Simulation
 
-![](images/simulation/uart-simulation.jpeg)
+<p align="center">
+  <img src="images/serial-monitor/uart-simulation.jpeg" width="70%">
+</p>
 
 ### UART Serial Monitor
 
@@ -174,7 +189,9 @@ SPI communication is demonstrated using the **W25X10CLSNIG SPI Flash Memory**. T
 
 ### SPI Simulation
 
-![](images/simulation/spi-simulation.png)
+<p align="center">
+  <img src="images/serial-monitor/spi-simulation.jpeg" width="100%">
+</p>
 
 ### SPI Serial Monitor
 
@@ -188,7 +205,9 @@ I²C communication is implemented using the **24LC256-I/P EEPROM**. Frame genera
 
 ### I²C Simulation
 
-![](images/simulation/i2c-simulation.jpeg)
+<p align="center">
+  <img src="images/serial-monitor/i2c-simulation.jpeg" width="100%">
+</p>
 
 ### I²C Serial Monitor
 
@@ -204,7 +223,9 @@ The ESP32 publishes protocol frames and protocol status over MQTT, allowing the 
 
 ### MQTT Connection
 
-![](images/serial-monitor/mqtt-connected.png)
+<p align="center">
+  <img src="images/serial-monitor/mqtt-connected.png" width="100%">
+</p>
 
 ---
 
@@ -295,15 +316,9 @@ Previously transmitted communication frames are stored and displayed on the dash
 
 A custom PCB was designed to integrate the ESP32, communication peripherals, TFT LCD interface, status LEDs, and user controls into a compact embedded platform.
 
-## PCB Layout
-
-![](circuit/pcb/pcb-layout.png)
-
----
-
-## 3D PCB View
-
-![](circuit/pcb/pcb-3d.png)
+| PCB Layout | 3D View |
+|-----------|----------|
+| ![](circuit/pcb/pcb-layout.png) | ![](circuit/pcb/pcb-3d.png) |
 
 ---
 
@@ -328,7 +343,7 @@ A custom PCB was designed to integrate the ESP32, communication peripherals, TFT
 ## Circuit Schematic
 
 <p align="center">
-  <img src="circuit/schematic/schematic.png" width="95%">
+  <img src="circuit/schematic/schematic.png" width="80%">
 </p>
 
 ---
